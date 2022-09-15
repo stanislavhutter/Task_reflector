@@ -10,77 +10,118 @@ entity user {
     password
 }
 
-entity user_role {
+entity task {
     id (PK)
+    --
+    name
+    description
+    visibilty
+}
+
+entity group {
+    id (PK)
+    --
     name
     description
 }
 
-together {
-    entity group {
-        id (FK)
-        --
-        name
-        description
-    }
-    
-    entity group_member {
-        user_id (FK)
-        group_id (FK)
-        --
-        user_role
-    } 
+entity user_task {
+    id (PK)
+    --
+    task_id (FK)
+    user_id (FK)
+}
+
+entity group_task {
+    id (PK)
+    --
+    task_id (FK)
+    group_id (FK)
 }
 
 
-together {
-
-    entity task {
-        id (PK)
-        --
-        user_id (FK)
-        group_id (FK)
-        --
-        name
-        description
-    }
-
-    entity task_difficulty {
-        id (PK)
-        --
-        user_id(FK)
-        task_id(FK)
-        --
-        estimate
-        effective
-    }
-
-    entity task_duration {
-        id (PK)
-        --
-        user_id(FK)
-        task_id(FK)
-        --
-        estimate
-        effective
-    }
-
-    entity timers {
-        id (PK)
-        --
-        user_id (FK)
-        task_id (FK)
-    }
-
+entity group_member {
+    id (PK)
+    --
+    user_id (FK)
+    group_id (FK)
+    user_role_in_group (FK)
 }
 
+entity user_role {
+    id (PK)
+    --
+    name
+    description
+}
 
-group_member }|--|| user
-group_member }|--|| group
-group_member }|--|| user_role
+entity task_difficulty_estimate {
+    id (PK)
+    --
+    user_task (FK)
+    --
+    difficulty_value
+    notes
+}
+entity task_difficulty_effective {
+    id (PK)
+    --
+    user_task (FK)
+    --
+    difficulty_value
+    notes
+}
 
-task }|--|| user
-task }|--o| group
+entity task_duration_estimate {
+    id (PK)
+    --
+    user_task (FK)
+    --
+    duration_value
+    notes
+}
+entity task_duration_effective {
+    id (PK)
+    --
+    user_task (FK)
+    --
+    duration_value
+    notes
+}
+
+user_task }o--|| user
+user_task }o--|| task
+
+task_duration_estimate |o--|| user_task
+task_duration_effective |o--|| user_task
+task_difficulty_estimate |o--|| user_task
+task_difficulty_effective |o--|| user_task
+
+group_member }o--|| user
+group_member }o--|| group
+group_member }o--|| user_role
+
+group_task }o--|| group
+group_task }o--|| task
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
