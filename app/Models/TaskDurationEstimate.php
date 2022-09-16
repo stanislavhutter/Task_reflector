@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class TaskDurationEstimate extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_task_id',
+        'duration_value',
+        'notes',
+    ];
 }

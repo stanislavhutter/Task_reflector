@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class GroupTask extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'group_id',
+        'task_id',
+    ];
 }

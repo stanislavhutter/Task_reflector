@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class TaskDifficultyEffective extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_task_id',
+        'difficulty_value',
+        'notes',
+    ];
 }
