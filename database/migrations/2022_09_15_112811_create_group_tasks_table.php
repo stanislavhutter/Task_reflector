@@ -16,6 +16,9 @@ return new class extends Migration
         Schema::create('group_tasks', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+
+            $table->foreignId('task_id')->constrained('tasks');
+            $table->foreignId('group_id')->constrained('groups');
         });
     }
 

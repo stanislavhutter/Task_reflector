@@ -16,6 +16,10 @@ return new class extends Migration
         Schema::create('task_duration_effectives', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+
+            $table->foreignId('user_task_id')->constrained('user_tasks');
+            $table->double('duration_value', 8 ,3);
+            $table->text('note');
         });
     }
 

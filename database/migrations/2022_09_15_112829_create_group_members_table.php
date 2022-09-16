@@ -16,6 +16,10 @@ return new class extends Migration
         Schema::create('group_members', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('group_id')->constrained('groups');
+            $table->foreignId('user_role_id')->constrained('user_roles');
         });
     }
 

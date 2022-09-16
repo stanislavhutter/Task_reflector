@@ -16,6 +16,10 @@ return new class extends Migration
         Schema::create('task_difficulty_effectives', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+
+            $table->foreignId('user_task_id')->constrained('user_tasks');
+            $table->double('difficulty_value', 8 ,3);
+            $table->text('note');
         });
     }
 
