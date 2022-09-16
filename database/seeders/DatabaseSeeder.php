@@ -20,21 +20,24 @@ class DatabaseSeeder extends Seeder
         \App\Models\Group::factory(10)->create();
         \App\Models\UserRole::factory()->create([
             'name'=> 'Admin',
-            'description'=> 'Admin user can do anything'
+            'description'=> 'Admin user can do anything, even selling his own mother'
         ]);
         \App\Models\UserRole::factory()->create([
             'name'=> 'Peasant',
-            'description'=> 'a filthy peasant, smells and drinks alcohol all the time'
+            'description'=> 'a filthy peasant, smells bad and drinks alcohol all the time'
         ]);
 
         // many to many models
-        \App\Models\UserTask::factory(10)->create();
+        \App\Models\UserTask::factory(100)->create();
         \App\Models\GroupTask::factory(10)->create();
         \App\Models\GroupMember::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        // one to one relations
+        \App\Models\TaskDifficultyEstimate::factory(10)->create();
+        \App\Models\TaskDifficultyEffective::factory(10)->create();
+        \App\Models\TaskDurationEstimate::factory(10)->create();
+        \App\Models\TaskDurationEffective::factory(10)->create();
+
+
     }
 }
